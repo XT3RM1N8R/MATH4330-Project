@@ -1,19 +1,18 @@
 def BuildVandermonde(vector):
-    """Builds a vandermonde matrix for the given vector to the given degree.
+    """Builds a Vandermonde matrix for the given vector to the given 4th degree.
 
-    Builds a vandermonde matrix for the given vector to the given degree, composed of quadratic polynomial power series for each element in the given vector.
+    Builds a vandermonde matrix for the given vector to the 4th degree, composed of quadratic polynomial power series for each element in the given vector.
 
     Args:
-        vector: a vector.
-        degree: the degree of the vandermonde matrix to be built.
+        vector: a vector that represents the independent set; the domain.
 
     Returns:
-        A vandermonde matrix of the given vector to the given degree.
+        A vandermonde matrix of the given vector to the 4th degree.
     """
     result = []
-    for exponent in range(5):
+    for element in vector:
         temp = []
-        for element in range(len(vector)):
+        for exponent in range(5):
             temp.append(element**exponent)
         result.append(temp)
     return result
@@ -55,7 +54,7 @@ def Conjugate(scalar):
 def ConjugateMatrix(matrix):
     """Get the conjugate of the matrix.
 
-    Get the conjuage of the matrix by getting the conjugate of each element of the matrix.
+    Get the conjugate of the matrix by getting the conjugate of each element of the matrix.
 
     Args:
         matrix: a matrix.
@@ -72,7 +71,7 @@ def ConjugateMatrix(matrix):
 def ConjugateTranspose(matrix):
     """Gets the conjugate transpose of a matrix.
 
-    Gets the conjugate transpose of a matrix by getting the trasnpose and then finding the conjugate of the matrix.
+    Gets the conjugate transpose of a matrix by getting the transpose and then finding the conjugate of the matrix.
 
     Args:
         matrix: a matrix.
@@ -104,7 +103,7 @@ def Dot(vector1, vector2):
     return result
 
 def TwoNorm(vector):
-  """Caclulates the 2-norm of a vector. 
+  """Calculates the 2-norm of a vector.
 
   Sums the squares of the elements of a given vector and returns the root of the sum.
 
@@ -226,7 +225,6 @@ def ModifiedGramSchmidt(matrix):
 
     return [Q, R]
 
-
 def BackSubstitution(matrix, vector):
     """Solves for the coefficients using back-substitution.
 
@@ -267,15 +265,15 @@ def Degree4Interpolation(coefficients, x):
               coefficients[4] * (x**4))
     return result
 
-independentSet = [1, 2, 3, 4, 5]
-dependentSet = [1, 4, 9, 16, 25]
+independentSet = [1j, 2j, 3j, 4j, 5j]
+dependentSet = [1j, 4j, 9j, 16j, 25j]
 degree = 4
 
 vandermondeMatrix = BuildVandermonde(independentSet)
 [matrixQ, matrixR] = ModifiedGramSchmidt(vandermondeMatrix)
 
 systemSolution = MatrixVectorMultiplication(ConjugateTranspose(matrixQ), dependentSet)
-coefficients = BackSubstitution(matrixR, systemSolution)
+polynomialCoefficients = BackSubstitution(matrixR, systemSolution)
 
-print(Degree4Interpolation(coefficients, 2))
+print(Degree4Interpolation(polynomialCoefficients, 1))
 
