@@ -110,7 +110,7 @@ def TwoNorm(vector):
   Args:
     vector: A list of numbers representing a vector.
   Returns:
-    A scalar which is the 2-norm of the given vector. 
+    A scalar which is the 2-norm of the given vector.
   """
   result = 0
   for element in range(len(vector)):
@@ -124,7 +124,7 @@ def VectorScalarMultiplication(vector, scalar):
   This function computes a vector that is the result of multiplying the given scalar by each element in the vector.
 
   Args:
-    scalar: A number
+    scalar: A single number
     vector: A list of numbers representing a vector.
 
   Returns:
@@ -231,8 +231,8 @@ def BackSubstitution(matrix, vector):
     Solves for the coefficients of the system by using back-substitution. Iterates the matrix in reverse.
 
     Args:
-        matrix: a matrix.
-        vector: a vector.
+        matrix: an upper triangular matrix representing different partial equations for the system.
+        vector: a vector representing the solution to the system.
     
     Returns:
         A vector of coefficients for the system.
