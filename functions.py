@@ -1,4 +1,4 @@
-def BuildVandermonde(vector, degree):
+def BuildVandermonde(vector):
     """Builds a vandermonde matrix for the given vector to the given degree.
 
     Builds a vandermonde matrix for the given vector to the given degree, composed of quadratic polynomial power series for each element in the given vector.
@@ -271,11 +271,11 @@ independentSet = [1, 2, 3, 4, 5]
 dependentSet = [1, 4, 9, 16, 25]
 degree = 4
 
-vandermondeMatrix = BuildVandermonde(independentSet, 4)
+vandermondeMatrix = BuildVandermonde(independentSet)
 [matrixQ, matrixR] = ModifiedGramSchmidt(vandermondeMatrix)
 
-systemSolution = MatrixVectorMultiplication(matrixQ, dependentSet)
+systemSolution = MatrixVectorMultiplication(ConjugateTranspose(matrixQ), dependentSet)
 coefficients = BackSubstitution(matrixR, systemSolution)
 
-print(Degree4Interpolation(coefficients, 1))
+print(Degree4Interpolation(coefficients, 2))
 
